@@ -1,0 +1,1 @@
+web: java -jar target/dssExport-1.0.jar
