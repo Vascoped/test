@@ -3,8 +3,8 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>java-getting-started</artifactId>
+  <groupId>com.amadeus.dsexport</groupId>
+  <artifactId>dssExport</artifactId>
   <version>1.0</version>
 
   <parent>
@@ -13,7 +13,7 @@
     <version>2.3.0.RELEASE</version>
     <relativePath/>
   </parent>
-  <name>java-getting-started</name>
+  <name>dssExport</name>
 
   <properties>
     <java.version>1.8</java.version>
@@ -76,35 +76,30 @@
       <artifactId>webjars-locator</artifactId>
       <version>0.30</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <scope>runtime</scope>
-    </dependency>
   </dependencies>
 
-  <build>
+<build>
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>build-info</goal>
-            </goals>
-            <configuration>
-              <additionalProperties>
-                <encoding.source>${project.build.sourceEncoding}</encoding.source>
-                <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
-                <java.source>${maven.compiler.source}</java.source>
-                <java.target>${maven.compiler.target}</java.target>
-              </additionalProperties>
-            </configuration>
-          </execution>
-        </executions>
+        <groupId>org.codehaus.mojo</groupId>
+          <artifactId>appassembler-maven-plugin</artifactId>
+          <version>1.1.1</version>
+          <configuration> 
+            <assembleDirectory>target</assembleDirectory> 
+            <programs>
+                <program>
+                    <mainClass>WorkerProcess</mainClass>
+                    <name>worker</name>
+                </program>
+            </programs>
+          </configuration>
+          <executions>
+              <execution>
+                  <phase>package</phase><goals><goal>assemble</goal></goals>
+              </execution>            
+          </executions>
       </plugin>
     </plugins>
-  </build>
+  </build>  
 
 </project>
