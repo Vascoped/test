@@ -6,16 +6,16 @@
   <groupId>com.amadeus.dsexport</groupId>
   <artifactId>dssExport</artifactId>
   <version>1.0</version>
-
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.0.RELEASE</version>
-    <relativePath/>
-  </parent>
+  
   <name>dssExport</name>
+  
+  <properties>
+     <maven.compiler.source>1.8</maven.compiler.source>
+     <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 
-<build>
+
+  <build>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -27,6 +27,10 @@
                 <program>
                     <mainClass>WorkerProcess</mainClass>
                     <name>worker</name>
+                </program>
+                <program>
+                    <mainClass>OneOffProcess</mainClass>
+                    <name>oneoff</name>
                 </program>
             </programs>
           </configuration>

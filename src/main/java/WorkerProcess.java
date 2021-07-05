@@ -1,5 +1,3 @@
-package com.amadeus.dssexport;
-
 public class WorkerProcess
 {
     public static void main(String[] args)
