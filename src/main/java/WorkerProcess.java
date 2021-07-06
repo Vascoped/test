@@ -23,7 +23,7 @@ public class WorkerProcess {
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];        
-        String dbUrl = "jdbc:postgres://djyfywgcyljccc:1aefd385de78d48a6962515308d9f7b3320a9e996e54082dc32510e141d59ca9@ec2-54-217-195-234.eu-west-1.compute.amazonaws.com:5432/ddc19nf5cgufb";
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
 
         return DriverManager.getConnection(dbUrl, username, password);
     }
