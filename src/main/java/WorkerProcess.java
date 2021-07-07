@@ -11,6 +11,13 @@ public class WorkerProcess {
         Connection connection = getConnection();
         ResultSet setupTable = ReadSetupTable(connection);
         
+        while (setupTable.next()) {
+            
+                System.out.print(setupTable.getInt(1));
+                System.out.print(": ");
+                System.out.println(setupTable.getString(2));
+            }
+        
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
         stmt.executeUpdate("CREATE TABLE ticks (tick timestamp)");
@@ -35,13 +42,6 @@ public class WorkerProcess {
         
         PreparedStatement pst = connection.prepareStatement("SELECT * FROM ticks");
         ResultSet rs = pst.executeQuery();
-
-            while (rs.next()) {
-            
-                System.out.print(rs.getInt(1));
-                System.out.print(": ");
-                System.out.println(rs.getString(2));
-            }
             
        return rs;    
     }
