@@ -1,22 +1,12 @@
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class WorkerProcess {
     
     public static void main(String[] args) throws Exception {
         
         Connection connection = getConnection();
-        ResultSet setupTable = ReadSetupTable(connection);
-        
-        while (setupTable.next()) {
-            
-                System.out.print(setupTable.getInt(1));
-                System.out.print(": ");
-                System.out.println(setupTable.getString(2));
-            }
         
         Statement stmt = connection.createStatement();
         stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
@@ -37,13 +27,6 @@ public class WorkerProcess {
 
         return DriverManager.getConnection(dbUrl, username, password);
     }
-    
-    private static ResultSet ReadSetupTable (Connection connection) throws SQLException{
-        
-        PreparedStatement pst = connection.prepareStatement("SELECT * FROM ticks");
-        ResultSet rs = pst.executeQuery();
-            
-       return rs;    
-    }
+   
 
 }
