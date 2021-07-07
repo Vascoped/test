@@ -7,9 +7,10 @@ public class WorkerProcess {
     public static void main(String[] args) throws Exception {
         
         Connection connection = getConnection();
-        ResultSet rs = setupTable(connection);
-        
-         while (rs.next()) {
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM ticks");
+        ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
             
                 System.out.print(rs.getInt(1));
                 System.out.print(": ");
