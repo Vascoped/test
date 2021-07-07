@@ -12,9 +12,7 @@ public class WorkerProcess {
 
             while (rs.next()) {
             
-                System.out.print(rs.getInt(1));
-                System.out.print(": ");
-                System.out.println(rs.getString(2));
+                System.out.print(rs.getDate(1));
             }
         
         /*Statement stmt = connection.createStatement();
