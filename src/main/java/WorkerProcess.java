@@ -6,40 +6,45 @@ public class WorkerProcess {
     
     public static void main(String[] args) throws Exception {
         
-        Connection connection = getConnection();
-        PreparedStatement pst = connection.prepareStatement("SELECT * FROM ticks");
-        ResultSet rs = pst.executeQuery();
-
-            while (rs.next()) {
-            
-                System.out.print(rs.getDate(1));
-            }
-        
-        /*Statement stmt = connection.createStatement();
-        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
-        stmt.executeUpdate("CREATE TABLE ticks (tick timestamp)");
-        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-        while (rs.next()) {
-            System.out.println("Read from DB: " + rs.getTimestamp("tick"));
-        }*/
+    String url = "jdbc:postgresql://localhost/localdb?user=postgres&password=qwerty911";
+    Connection connection = DriverManager.getConnection(url);
+    System.out.println("Connected to the PostgreSQL server successfully.");
+    
+    /*Connection connection = getConnection();
+    System.out.println("Connected to the PostgreSQL server successfully.");*/
+    
+    //copyToMainSchema(connection);
+    
     }
     
     private static Connection getConnection() throws URISyntaxException, SQLException {
+        
+    
+        
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
-
+        
         return DriverManager.getConnection(dbUrl, username, password);
     }
     
-    private static ResultSet setupTable (Connection con) throws SQLException {
+    private static void copyToMainSchema (Connection con) throws SQLException {
          
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM ticks");
-        ResultSet rs = pst.executeQuery();
-        return rs;
+        try
+        {
+           PreparedStatement stmt = con.prepareStatement("call public.readsetupandcopy_proc()");
+           stmt.execute();
+           System.out.println("Stored Procedure executed successfully");
+        }
+        catch(Exception err)
+        {
+           System.out.println("An error has occurred.");
+           System.out.println("See full details below.");
+           err.printStackTrace();
+        }
     }
+   
 }
   
