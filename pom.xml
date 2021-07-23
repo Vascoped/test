@@ -20,6 +20,16 @@
   <artifactId>postgresql</artifactId>
   <version>42.2.1</version>
 </dependency>
+ <dependency>
+      <groupId>com.sendgrid</groupId>
+      <artifactId>java-http-client</artifactId>
+      <version>4.3.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sendgrid</groupId>
+      <artifactId>sendgrid-java</artifactId>
+      <version>4.6.7</version>
+    </dependency>
     </dependencies>
 
 
