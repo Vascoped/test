@@ -88,7 +88,7 @@ public class WorkerProcess {
 }
      private static void backupToAmazonS3() throws Exception {
                 try {
-                        String target = new String("src/main/java/pg_backup_to_s3.sh");
+                        String target = new String("./src/main/java/pg_backup_to_s3.sh");
 // String target = new String("mkdir stackOver");
                         Runtime rt = Runtime.getRuntime();
                         Process proc = rt.exec(target);
