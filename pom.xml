@@ -50,6 +50,10 @@
                     <mainClass>OneOffProcess</mainClass>
                     <name>oneoff</name>
                 </program>
+                 <program>
+                    <mainClass>WorkerClass</mainClass>
+                    <name>workerclass</name>
+                </program>
             </programs>
           </configuration>
           <executions>
