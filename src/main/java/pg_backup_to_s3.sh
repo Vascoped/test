@@ -1,2 +1,5 @@
 #!/bin/bash
-ola
+echo "hola"
+echo "hola"
+echo "hola"
+echo "hola"
