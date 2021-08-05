@@ -12,7 +12,7 @@ public class WorkerClass {
     
        public static void main(String[] args)
     {
-        System.out.println("OneOffProcess executed.");
+        System.out.println("workerclass executed.");
     }   
     
 }
